@@ -7,6 +7,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/",(req, res) => {
+    res.json({
+        message:"Welcome to TaskFlow API 🚀"
+    });
+});
+
 app.get("/health", (req, res) => {
   res.json({
     status: "ok",
@@ -14,7 +20,7 @@ app.get("/health", (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
