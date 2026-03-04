@@ -4,22 +4,23 @@ require("dotenv").config();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
 
-app.get("/",(req, res) => {
+//v1 router
+
+const v1 = express.Router();
+
+v1.get("/",(req, res) => {
     res.json({
         message:"Welcome to TaskFlow API 🚀"
     });
 });
 
-app.get("/health", (req, res) => {
-  res.json({
-    status: "ok",
-    message: "TaskFlow API is running"
-  });
+v1.get("/health", (req, res) => {
+  res.json({status: "ok", message: "TaskFlow API is running"});
 });
-
+app.use("/v1", v1);
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {

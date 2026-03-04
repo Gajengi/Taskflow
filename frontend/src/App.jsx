@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 export default function App() {
   const [data, setData] = useState(null);
   const [err, setErr] = useState("");
+  
 
   useEffect(() => {
-    fetch("http://localhost:3000/")
+    console.log("VITE_API_URL =", import.meta.env.VITE_API_URL);
+    fetch(`${import.meta.env.VITE_API_URL}/v1`)
       .then((r) => r.json())
       .then(setData)
       .catch((e) => setErr(String(e)));
